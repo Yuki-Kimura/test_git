@@ -1,0 +1,199 @@
+%
+%
+%	re'sume' style file
+%
+%					by K-suke Uehara
+%
+%	$Id: re'sume'.sty,v 1.1 1994/10/01 12:33:46 kei Exp $
+%		
+%	\centeruid	名前、所属等をセンタリングする。
+%	\oneside	1 page のレジュメを作る時等、真中に印刷する時用。
+%
+%
+%
+% 使い方の例:
+%
+%   \documentstyle[a4j,12pt,twoside,twocolumn,epsf,re'sume']{jarticle}
+%   \classification {修士論文中間発表資料}
+%   \title {オペレーティングシステムにおける\\通信機能の抽象化に関する研究}
+%   \organ {電気通信大学大学院}
+%   \department {情報工学専攻}
+%					+---------------------------+
+%   \studentid {9332006}		|class                 date |
+%   \author {植原 啓介}			|	     title          |
+%   \laboratory {浜田/砂原}		|      org dep sid auth lab.|
+%   \date {1994年 9月 26日}		|                           |
+%   \centeruid				|            概要           |
+%   \oneside				|   ---------------------   |
+%   \abstract{				|                           |
+%   ここにアブストラクトを書きます。	| ------------ ------------ |
+%   ..........				| ------------ ------------ |
+%   }					| ------------ ------------ |
+%   \begin{document}			| ------------ ------------ |
+%   \maketitle				| ------------ ------------ |
+%   \section{始めに}			| ------------ ------------ |
+%   ここに本文を書きます。		| ------------ ------------ |
+%   ..........				| ------------ ------------ |
+%   \end{document}			+---------------------------+
+%
+
+\typeout{Copyright: Keisuke UEHARA (kei@cs.uec.ac.jp)}
+
+\pagestyle{empty}
+
+%\oddsidemargin		-5mm
+%\evensidemargin	-14mm
+%\textwidth		179mm
+\oddsidemargin	7mm
+\evensidemargin	-2mm
+\textwidth	169mm
+%\footheight     0mm *latex2eでは廃止*
+\topmargin	-13mm
+\headheight	0mm
+\headsep	0mm
+\footskip	0mm
+\textheight	269mm
+\columnsep	5mm
+\columnseprule	0mm
+
+\setlength{\topsep}		{0em}
+\setlength{\parskip}		{0em}
+\setlength{\partopsep}		{0em}
+\setlength{\floatsep}		{0.4em minus 0.1em}
+\setlength{\textfloatsep}	{0.4em minus 0.1em}
+\setlength{\intextsep}		{0.4em minus 0.1em}
+
+
+\renewenvironment{itemize}{\begin{list}{$\bullet$}
+ {\setlength\labelwidth{.5em} \setlength\leftmargin{1.0em}
+ \setlength{\topsep}		{0.3em plus 0.1em minus 0.1em}
+ \setlength{\parskip}		{0em}
+ \setlength{\partopsep}		{0em}
+ \setlength{\itemsep}		{0.2em plus 0.1em minus 0.1em}
+ \setlength{\parsep}		{0em}
+ \def\makelabel##1{##1\hfill}}}{\end{list}}
+
+
+\renewenvironment{quote}{\begin{list}{$\bullet$}
+ {\setlength\labelwidth{.5em} \setlength\leftmargin{1.0em}
+ \setlength{\topsep}		{0.3em plus 0.1em minus 0.1em}
+ \setlength{\parskip}		{0em}
+ \setlength{\partopsep}		{0em}
+ \setlength{\itemsep}		{0.2em plus 0.1em minus 0.1em}
+ \setlength{\parsep}		{0em}
+ \rightmargin\leftmargin}
+ \item[]}{\end{list}}
+
+
+\def\descriptionlabel#1{\hspace\labelsep \bf #1}
+\def\description{\list{}{\setlength\leftmargin{0.7em}
+ \labelwidth\z@ \itemindent-\leftmargin
+ \setlength{\topsep}		{0.3em plus 0.1em minus 0.1em}
+ \setlength{\parskip}		{0em}
+ \setlength{\partopsep}		{0em}
+ \setlength{\itemsep}		{0.2em plus 0.1em minus 0.1em}
+ \setlength{\parsep}		{0em}
+ \let\makelabel\descriptionlabel}}
+
+
+\long\def\@makecaption#1#2{
+ \vskip 0.1em
+ \setbox\@tempboxa\hbox{#1: #2}
+ \ifdim \wd\@tempboxa >\hsize \unhbox\@tempboxa\par \else \hbox
+to\hsize{\hfil\box\@tempboxa\hfil} 
+ \fi}
+
+
+\def\thebibliography#1{\section*{{\large \bf 参考文献}\markboth
+ {参 考 文 献}{参 考 文 献}}\list
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep\small
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em minus .07em}
+ \sloppy
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+
+
+\def\section{\@startsection {section}{1}{\z@}{0.7em plus 0.5em minus 
+ .5em}{0.4em plus .1em}{\large\bf}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{0.6em plus 0.2em minus 
+ .5em}{0.3em plus .1em}{\large\bf}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{0.5em plus
+ 0.2em minus .4em}{0.2em plus .1em}{\normalsize\bf}}
+\def\paragraph{\@startsection
+ {paragraph}{4}{\z@}{0.5em plus 0.4em minus .2em}{-1em}{\normalsize\bf}}
+\def\subparagraph{\@startsection
+ {subparagraph}{4}{\parindent}{0.5em plus 0.2em minus 
+ .4em}{-1em}{\normalsize\bf}}
+
+
+\def\author#1{
+ \def\@author{#1}}
+
+\def\organ#1{
+ \def\@organ{#1}}
+
+\def\department#1{
+ \def\@department{#1}}
+
+\def\studentid#1{
+ \def\@studentid{#1}}
+
+\def\classification#1{
+ \def\@classification{#1}}
+
+\def\laboratory#1{
+ \def\@laboratory{#1研究室}}
+
+\def\centeruid{
+ \def\@centeruid{}}
+
+\def\@abstract{}
+\def\abstract#1{
+ \def\@abstract{\begin{quote}\begin{center} {\gt 概要} \end{center}
+ #1\end{quote}}}
+
+
+\def\maketitle{\par
+ \begingroup
+ \def\thefootnote{\fnsymbol{footnote}}
+ \def\@makefnmark{\hbox 
+ to 0pt{$^{\@thefnmark}$\hss}} 
+ \if@twocolumn 
+ \twocolumn[\@maketitle] 
+ \else \newpage
+ \global\@topnum\z@ \@maketitle \fi\thispagestyle{empty}\@thanks
+ \endgroup
+ \setcounter{footnote}{0}
+ \let\maketitle\relax
+ \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax}
+\def\@maketitle{\newpage
+ \null
+ {\@classification \hfill \@date }
+ \vskip 1.0em \begin{center}
+ {\LARGE \@title \par}
+ \vskip 0.5em
+ {\@ifundefined{@centeruid}{\flushright}{}
+ \@organ \hspace{1.0em} \@department \hspace{1.0em} 
+ \@studentid \hspace{1.0em} \@author
+	\@ifundefined{@laboratory}{}{\hspace{1.0em} \@laboratory}
+ \par} 
+ \end{center}
+ \vskip 1.5em
+ \par
+ \ifx\@abstract\null \else\@abstract\fi
+ \vskip 1.5em}
+
+\def\oneside{
+  \oddsidemargin	-5mm
+  \evensidemargin	0mm}
+
+% End of Stylefile
+%
+%	Memo
+%		A4 -> B5 = 0.866 倍
+%		B5 -> A4 = 1.155 倍
+%
+
